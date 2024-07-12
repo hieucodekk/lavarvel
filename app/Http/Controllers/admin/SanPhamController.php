@@ -36,6 +36,7 @@ class SanPhamController extends Controller
     public function create()
     {
         //
+
         return view('admin.sanpham.add');
     }
 
@@ -45,6 +46,16 @@ class SanPhamController extends Controller
     public function store(Request $request)
     {
         //
+        if($request->isMethod('POST')){
+            //cách 1 :
+            // $paramas =$request->post();
+            // unset($paramas['_token']);
+            //cách 2: 
+            $paramas =$request->except('_token');
+            // $this->san_pham->createProduct($paramas);
+            SanPham::create($paramas);
+            return redirect()->route('sanpham.index')->with('success', 'thêm sản phẩm thành công');
+        }
     }
 
     /**

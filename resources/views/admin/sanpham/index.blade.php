@@ -5,6 +5,11 @@
     <h1>danh sách san phẩm</h1>
     <div class="card-body">
         <a href="{{ route('sanpham.create')}}" class="btn btn-success">thêm sản phẩm</a>
+        @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('sucess')}}
+        </div>
+        @endif
         <table class="table">
             <thead>
                 <tr>

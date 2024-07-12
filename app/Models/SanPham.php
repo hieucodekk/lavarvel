@@ -36,4 +36,8 @@ class SanPham extends Model
     //     'mo_ta',
     //     'trang_thai'
     // ];
+    public function createProduct($data){
+        DB::table('san_phams')->insert($data);
+
+    }
 }

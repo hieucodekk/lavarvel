@@ -17,27 +17,34 @@ class SanPham extends Model
     // }
 
     //cách 2:query builder
-    public function getList()  {
+    public function getList()
+    {
         $listSanPham = DB::table('san_phams')
-        ->orderBy('id', 'DESC')
-        ->get();
+            ->orderBy('id', 'DESC')
+            ->get();
         return $listSanPham;
     }
 
-    //cách 3: sử dụng Eloquent
-    // protected $table = 'san_phams';
-    // protected $fillable =[
-    //     'ma_san_pham',
-    //     'ten_san_pham',
-    //     'hinh_anh',
-    //     'gia',
-    //     'so_luong',
-    //     'ngay_nhap',
-    //     'mo_ta',
-    //     'trang_thai'
-    // ];
-    public function createProduct($data){
+    public function createProduct($data)
+    {
         DB::table('san_phams')->insert($data);
-
     }
+    public function getDetailProduct($id)
+    {
+        $san_pham = DB::table('san_phams')->where('id', $id)->first();
+
+        return $san_pham;
+    }
+    // cách 3: sử dụng Eloquent
+    protected $table = 'san_phams';
+    protected $fillable = [
+        'ma_san_pham',
+        'ten_san_pham',
+        'hinh_anh',
+        'gia',
+        'so_luong',
+        'ngay_nhap',
+        'mo_ta',
+        'trang_thai'
+    ];
 }

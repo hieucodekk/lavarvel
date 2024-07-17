@@ -52,7 +52,15 @@ class SanPhamController extends Controller
             // unset($paramas['_token']);
             //cách 2: 
             $paramas =$request->except('_token');
+            if($request->hasFile('hinh_anh')){
+                $filename = $request->file('hinh_anh')->store('uploads/sanpham', 'public');
+            }else{
+                $filename = null ;
+            }
+
+            $paramas['hinh_anh'] = $filename;
             // $this->san_pham->createProduct($paramas);
+            
             SanPham::create($paramas);
             return redirect()->route('sanpham.index')->with('success', 'thêm sản phẩm thành công');
         }
@@ -72,6 +80,8 @@ class SanPhamController extends Controller
     public function edit(string $id)
     {
         //
+        $sanPham = $this->san_pham->getDetailProduct($id);
+        return view('admin.sanpham.update', compact('sanPham'));
     }
 
     /**

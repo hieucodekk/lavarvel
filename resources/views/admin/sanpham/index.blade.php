@@ -31,14 +31,14 @@
                     <th scope="row">{{$index + 1}}</th>
                     <td>{{$item->ma_san_pham}}</td>
                     <td>{{$item->ten_san_pham}}</td>
-                    <td>{{$item->hinh_anh}}</td>
+                    <td> <img src="{{ Storage::url($item->hinh_anh) }}" alt="Hình ảnh sản phẩm" width="150px"></td>
                     <td>{{$item->gia}}</td>
                     <td>{{$item->so_luong}}</td>
                     <td>{{$item->ngay_nhap}}</td>
                     <td>{{$item->mo_ta}}</td>
                     <td>{{$item->trang_thai == 0 ? 'còn hàng' : 'hết hàng'}}</td>
                     <td>
-                        <button class="btn btn-success">sửa</button>
+                        <a href="{{ route('sanpham.edit', $item->id) }}" class="btn btn-warning">Sửa</a>
                         <button class="btn btn-success">xóa</button>
                     </td>
                 </tr>

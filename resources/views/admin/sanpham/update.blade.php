@@ -3,16 +3,17 @@
 @section('content')
 <div class="card-body">
     <h1>thêm sản phẩm</h1>
-    <form action="{{ route('sanpham.store')}}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('sanpham.update', $sanPham->id)}}" method="POST" enctype="multipart/form-data">
         <!-- csrf field: là 1 trường ẩn bắt buộc phải có trong form -->
         @csrf
+        @method('PUT')
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">mã sản phẩm</label>
             <input type="text" class="form-control" name="ma_san_pham" value=" {{ $sanPham->ma_san_pham }}">
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">tên sản phẩm</label>
-            <input type="text" class="form-control" name="ten_san_pham" value="{{ $sanPham->ma_san_pham }}">
+            <input type="text" class="form-control" name="ten_san_pham" value="{{ $sanPham->ten_san_pham }}">
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">hình ảnh</label>
@@ -21,7 +22,7 @@
         <img id="image_san_pham" src="{{ Storage::url($sanPham->hinh_anh) }}" alt="Hình ảnh sản phầm" style="width: 200px;">
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">giá</label>
-            <input type="text" class="form-control" name="gia" value="{{ $sanPham->ma_san_pham }}">
+            <input type="text" class="form-control" name="gia" value="{{ $sanPham->gia }}">
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">số lượng</label>
@@ -43,7 +44,7 @@
             <label for="exampleFormControlTextarea1" class="form-label">mô tả</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="mo_ta">{{ $sanPham->mo_ta }}</textarea>
         </div>
-        <button class="btn btn-success">thêm mới</button>
+        <button class="btn btn-success">update</button>
     </form>
 </div>
 @endsection
